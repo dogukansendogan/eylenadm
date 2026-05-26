@@ -1,4 +1,4 @@
-// Authentication Context for Admin Panel
+// Eylen Admin Panel - Authentication Context Provider
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { 
   signInWithEmailAndPassword,

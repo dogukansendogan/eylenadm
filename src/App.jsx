@@ -1,4 +1,4 @@
-// React Router and App structure setup
+// Eylen Admin Panel - main App component with React Router
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
