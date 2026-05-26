@@ -77,14 +77,7 @@ export default function Reservations() {
 
   const renderStatusBadge = (item) => {
     const receiptLink = getReceiptLink(item);
-    if (!receiptLink) {
-      return (
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full bg-neutral-100/80 dark:bg-neutral-950/60 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-white/5">
-          <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-600"></span>
-          Ödeme Yapılmadı
-        </span>
-      );
-    }
+    
     if (item?.status === "approved") {
       return (
         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
@@ -98,6 +91,17 @@ export default function Reservations() {
         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-500/20">
           <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
           Reddedildi
+        </span>
+      );
+    }
+    if (item?.status === "pending_approval" || (receiptLink && item?.status === "pending")) {
+      return (
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-500/25">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500"></span>
+          </span>
+          Dekont Bekliyor
         </span>
       );
     }
@@ -234,7 +238,7 @@ export default function Reservations() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <div className="flex items-center justify-end gap-3">
-                        {reservation.status === "pending_approval" && (
+                        {(reservation.status === "pending_approval" || reservation.status === "pending") && (
                           <>
                             <button
                               type="button"
@@ -334,7 +338,7 @@ export default function Reservations() {
                       Dekont Yok
                     </span>
                   )}
-                  {reservation.status === "pending_approval" && (
+                  {(reservation.status === "pending_approval" || reservation.status === "pending") && (
                     <>
                       <button
                         type="button"

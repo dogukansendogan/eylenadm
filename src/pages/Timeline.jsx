@@ -112,8 +112,10 @@ export default function Timeline() {
     setModalAcik(true);
   };
 
-  const handleRezervasyonEklendi = (yeniRes) => {
+  const handleRezervasyonEklendi = async (yeniRes) => {
     setReservations(prev => [...prev, yeniRes]);
+    // Villa dolu tarihlerini de yenilemek için veriyi yenile
+    setTimeout(() => fetchData(), 500);
   };
 
   const getVillaReservations = (villaId) => {

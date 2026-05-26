@@ -7,16 +7,24 @@ import { doc, updateDoc, getDoc, arrayUnion, arrayRemove } from "firebase/firest
 import { db } from "./firebase";
 
 /**
- * İki tarih arasındaki tüm günleri YYYY-MM-DD formatında döndürür
+ * İki tarih arasındaki tüm günleri YYYY-MM-DD formatında döndürür.
+ * Giriş tarihi dahil, ÇIKIŞ TARİHİ HARİÇ - çünkü çıkış günü
+ * bir sonraki misafirin giriş günü olabilir.
  */
 export const getDatesInRange = (startDate, endDate) => {
   const dateArray = [];
   let currentDate = new Date(startDate);
+  // Tarih karşılaştırması için saat bilgisini sıfırla
+  currentDate.setHours(0, 0, 0, 0);
   const lastDate = new Date(endDate);
+  lastDate.setHours(0, 0, 0, 0);
   
-  // Başlangıç ve bitiş tarihleri dahil
-  while (currentDate <= lastDate) {
-    dateArray.push(currentDate.toISOString().split('T')[0]); // YYYY-MM-DD formatı
+  // Başlangıç tarihi dahil, bitiş tarihi HARİÇ (çıkış günü = giriş günü olabilir)
+  while (currentDate < lastDate) {
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    dateArray.push(`${year}-${month}-${day}`);
     currentDate.setDate(currentDate.getDate() + 1);
   }
   

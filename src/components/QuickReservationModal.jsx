@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { collection, addDoc, serverTimestamp, Timestamp } from "firebase/firestore";
 import { db } from "../services/firebase";
+import { updateVillaBookedDates } from "../services/admin-reservationService";
 
 export default function QuickReservationModal({ 
   kapat, 
@@ -38,8 +39,9 @@ export default function QuickReservationModal({
       return;
     }
 
+    // Çıkış tarihi, giriş tarihinden sonra olmalı (aynı gün olmaz)
     if (new Date(formVeri.endDate) <= new Date(formVeri.startDate)) {
-      setHata("Bitiş tarihi başlangıç tarihinden sonra olmalıdır.");
+      setHata("Çıkış tarihi giriş tarihinden sonra olmalıdır.");
       return;
     }
 
@@ -64,6 +66,15 @@ export default function QuickReservationModal({
       
       const docRef = await addDoc(collection(db, "reservations"), rezervasyonVerisi);
       
+      // Eğer rezervasyon onaylıysa, villa dolu tarihlerini güncelle (çıkış günü hariç)
+      if (formVeri.status === "approved") {
+        await updateVillaBookedDates(
+          formVeri.villaId,
+          new Date(formVeri.startDate),
+          new Date(formVeri.endDate)
+        );
+      }
+      
       rezervasyonEklendi({
         id: docRef.id,
         ...rezervasyonVerisi,
@@ -73,7 +84,6 @@ export default function QuickReservationModal({
       
       kapat();
     } catch (err) {
-
       setHata("Rezervasyon eklenirken bir hata oluştu.");
     } finally {
       setYukleniyor(false);
