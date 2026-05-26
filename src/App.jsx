@@ -17,85 +17,84 @@ function App() {
     <ThemeProvider>
       <Router>
         <AuthProvider>
-        <Routes>
-          {/* Ana rota, dashboard'a yönlendir */}
-          <Route path="/" element={<Navigate to="/dashboard" />} />
-          
-          {/* Giriş sayfası */}
-          <Route path="/login" element={<Login />} />
-          
-          {/* Korumalı rotalar */}
-          <Route 
-            path="/dashboard" 
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            } 
-          />
-          
-          {/* Villa Yönetimi sayfası */}
-          <Route 
-            path="/villas" 
-            element={
-              <PrivateRoute>
-                <Villalar />
-              </PrivateRoute>
-            } 
-          />
-          
-          {/* Rezervasyon Yönetimi sayfaları */}
-          <Route 
-            path="/reservations" 
-            element={
-              <PrivateRoute>
-                <Reservations />
-              </PrivateRoute>
-            } 
-          />
-          
-          <Route 
-            path="/reservations/:id" 
-            element={
-              <PrivateRoute>
-                <ReservationDetail />
-              </PrivateRoute>
-            } 
-          />
-          
-          <Route 
-            path="/users" 
-            element={
-              <PrivateRoute>
-                <Users />
-              </PrivateRoute>
-            } 
-          />
+          <Routes>
+            {/* Ana rota, dashboard'a yönlendir */}
+            <Route path="/" element={<Navigate to="/dashboard" />} />
+            
+            {/* Giriş sayfası */}
+            <Route path="/login" element={<Login />} />
+            
+            {/* Korumalı rotalar */}
+            <Route 
+              path="/dashboard" 
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              } 
+            />
+            
+            {/* Villa Yönetimi sayfası */}
+            <Route 
+              path="/villas" 
+              element={
+                <PrivateRoute>
+                  <Villalar />
+                </PrivateRoute>
+              } 
+            />
+            
+            {/* Rezervasyon Yönetimi sayfaları */}
+            <Route 
+              path="/reservations" 
+              element={
+                <PrivateRoute>
+                  <Reservations />
+                </PrivateRoute>
+              } 
+            />
+            
+            <Route 
+              path="/reservations/:id" 
+              element={
+                <PrivateRoute>
+                  <ReservationDetail />
+                </PrivateRoute>
+              } 
+            />
+            
+            <Route 
+              path="/users" 
+              element={
+                <PrivateRoute>
+                  <Users />
+                </PrivateRoute>
+              } 
+            />
 
+            {/* Kupon Yönetimi Sayfası */}
+            <Route 
+              path="/kuponlar" 
+              element={
+                <PrivateRoute>
+                  <Kuponlar />
+                </PrivateRoute>
+              } 
+            />
 
-          {/* Kupon Yönetimi Sayfası */}
-          <Route 
-            path="/kuponlar" 
-            element={
-              <PrivateRoute>
-                <Kuponlar />
-              </PrivateRoute>
-            } 
-          />
-
-          {/* Zaman Çizelgesi (Timeline) Sayfası */}
-          <Route 
-            path="/timeline" 
-            element={
-              <PrivateRoute>
-                <Timeline />
-              </PrivateRoute>
-            } 
-          />
-          
-          {/* 404 sayfası */}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
+            {/* Zaman Çizelgesi (Timeline) Sayfası */}
+            <Route 
+              path="/timeline" 
+              element={
+                <PrivateRoute>
+                  <Timeline />
+                </PrivateRoute>
+              } 
+            />
+            
+            {/* 404 sayfası */}
+            <Route path="*" element={<Navigate to="/dashboard" />} />
+          </Routes>
         </AuthProvider>
       </Router>
     </ThemeProvider>
