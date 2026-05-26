@@ -1,0 +1,239 @@
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.page-enter {
+  animation: slideUp 0.4s ease-out;
+}
+
+.page-exit {
+  animation: slideUp 0.3s ease-in reverse;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-nav {
+  @apply backdrop-blur-xl bg-gradient-to-r from-neutral-900/30 to-neutral-850/20 border-b border-white/5;
+}
+
+.nav-link {
+  @apply relative px-4 py-2 text-neutral-300 font-medium transition-all duration-300
+         hover:text-white after:absolute after:bottom-0 after:left-0 after:w-0 
+         after:h-0.5 after:bg-gradient-to-r after:from-primary-500 after:to-primary-300
+         after:transition-all after:duration-300 hover:after:w-full;
+}
+
+.nav-link.active {
+  @apply text-white after:w-full;
+}
+
+.sidebar {
+  @apply sticky top-0 h-screen bg-gradient-to-b from-neutral-900 to-neutral-950
+         border-r border-white/5 overflow-y-auto transition-all duration-300;
+}
+
+.sidebar-link {
+  @apply relative flex items-center px-4 py-3 text-neutral-300 font-medium 
+         transition-all duration-300 hover:text-white hover:bg-white/5
+         before:absolute before:left-0 before:w-1 before:h-full before:bg-gradient-to-b
+         before:from-primary-500 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300;
+}
+
+.sidebar-link.active {
+  @apply text-white bg-white/10 before:opacity-100;
+}
+
+.main-content {
+  @apply flex-1 overflow-y-auto;
+}
+
+.content-wrapper {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+}
+
+.card-with-image {
+  @apply overflow-hidden rounded-2xl;
+}
+
+.card-image {
+  @apply w-full h-48 object-cover transition-transform duration-500 hover:scale-105;
+}
+
+.card-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-neutral-950 to-transparent opacity-0 
+         hover:opacity-100 transition-opacity duration-300;
+}
+
+.status-badge {
+  @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold 
+         backdrop-blur-sm border transition-all duration-300;
+}
+
+.status-badge.active {
+  @apply bg-emerald-500/10 text-emerald-300 border-emerald-500/20;
+}
+
+.status-badge.inactive {
+  @apply bg-neutral-800 text-neutral-400 border-neutral-700/50;
+}
+
+.status-badge.pending {
+  @apply bg-amber-500/10 text-amber-300 border-amber-500/20;
+}
+
+.table-container {
+  @apply overflow-x-auto rounded-xl border border-white/5;
+}
+
+.table-header {
+  @apply bg-gradient-to-r from-neutral-900/50 to-neutral-950/30 border-b border-white/5;
+}
+
+.table-row {
+  @apply border-b border-white/5 transition-colors duration-300
+         hover:bg-white/[0.02];
+}
+
+.table-row:last-child {
+  @apply border-b-0;
+}
+
+.table-cell {
+  @apply px-6 py-4 text-neutral-300;
+}
+
+.table-cell-emphasis {
+  @apply font-semibold text-white;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 bg-black/70 backdrop-blur-sm z-40 flex items-center justify-center
+         animation-fade-in;
+}
+
+.modal-content {
+  @apply bg-gradient-to-br from-neutral-900 to-neutral-950 rounded-2xl shadow-2xl
+         border border-white/5 max-h-[90vh] overflow-y-auto animation-slide-down;
+}
+
+.form-group {
+  @apply mb-6;
+}
+
+.form-input-group {
+  @apply relative;
+}
+
+.form-input:focus {
+  @apply ring-2 ring-primary-500/10;
+}
+
+.input-icon {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none;
+}
+
+.loading-skeleton {
+  @apply bg-gradient-to-r from-neutral-800 to-neutral-900 rounded-lg 
+         animate-pulse;
+}
+
+.loading-bar {
+  @apply h-2 bg-gradient-to-r from-primary-500 to-primary-300 rounded-full
+         animate-pulse;
+}
+
+.state-success {
+  @apply bg-emerald-950/10 border-l-4 border-emerald-500 text-emerald-200;
+}
+
+.state-error {
+  @apply bg-red-950/10 border-l-4 border-red-500 text-red-205;
+}
+
+.state-warning {
+  @apply bg-amber-950/10 border-l-4 border-amber-500 text-amber-205;
+}
+
+.state-info {
+  @apply bg-neutral-900 border-l-4 border-primary-500 text-neutral-200;
+}
+
+.text-gradient-primary {
+  @apply bg-gradient-to-r from-primary-400 to-primary-200 
+         bg-clip-text text-transparent;
+}
+
+.icon-button {
+  @apply inline-flex items-center justify-center w-10 h-10 rounded-xl
+         bg-neutral-800 text-neutral-300 transition-all duration-300
+         hover:bg-neutral-750 hover:text-white active:scale-95;
+}
+
+.tooltip {
+  @apply relative inline-block group;
+}
+
+.tooltip-text {
+  @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 
+         bg-neutral-950 border border-white/5 rounded-lg text-xs text-neutral-200
+         opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap
+         pointer-events-none z-50;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    @apply absolute left-0 top-0 z-40 h-screen -translate-x-full;
+  }
+
+  .sidebar.open {
+    @apply translate-x-0;
+  }
+
+  .content-wrapper {
+    @apply px-3 py-4;
+  }
+
+  .table-cell {
+    @apply px-3 py-2 text-sm;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  @apply bg-primary-500/20 text-white;
+}
+
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-primary-500;
+}
