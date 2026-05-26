@@ -1,3 +1,4 @@
+// Authentication Context for Admin Panel
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { 
   signInWithEmailAndPassword,

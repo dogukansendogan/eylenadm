@@ -1,3 +1,4 @@
+// Private Route component for admin check
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
