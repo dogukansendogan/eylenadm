@@ -7,7 +7,7 @@ export default function PrivateRoute({ children }) {
 
   // Kullanıcı giriş yapmamışsa veya admin değilse, login sayfasına yönlendir
   if (!currentUser || !isAdmin) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
   // Admin kullanıcı — içeriği göster
