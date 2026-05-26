@@ -1,13 +1,57 @@
-# React + Vite
+# Eylen Villa Yönetim Paneli
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eylen Villa projesinin yönetim (admin) panelidir. Bu panel üzerinden villaları yönetebilir, rezervasyonları görüntüleyip onaylayabilir, müşteri ve kullanıcı bilgilerini görebilirsiniz.
 
-Currently, two official plugins are available:
+## Teknolojiler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** + **Vite** (Geliştirme ortamı ve paketleyici)
+- **Tailwind CSS** (Şekillendirme ve UI)
+- **Firebase** (Firestore Database, Authentication, Storage)
+- **React Router v7** (Sayfa içi yönlendirmeler)
+- **Vitest & React Testing Library** (Test altyapısı)
 
-## Expanding the ESLint configuration
+## Kurulum ve Çalıştırma
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# eylenw
+1. Projeyi klonlayın ve bağımlılıkları yükleyin:
+   ```bash
+   npm install
+   ```
+
+2. `.env.example` dosyasını kopyalayarak `.env` dosyası oluşturun ve Firebase proje bilgilerinizi girin:
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Geliştirme sunucusunu başlatın:
+   ```bash
+   npm run dev
+   ```
+
+## Ortam Değişkenleri
+
+Uygulamanın çalışması için aşağıdaki `.env` değişkenlerinin ayarlanması gereklidir:
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+
+## Test ve Geliştirme
+
+Projeyi üretime hazır hale getirmeden önce hataları tespit etmek için:
+
+```bash
+# Kodlama standartlarını denetle
+npm run lint
+
+# Testleri çalıştır
+npm run test
+
+# Üretim (Production) versiyonunu oluştur
+npm run build
+```
+
+## Güvenlik
+
+Sistem, yetkilendirme olarak Firebase Authentication kullanmaktadır. Yetkisiz girişleri önlemek amacıyla sadece "users" koleksiyonunda `role: "admin"` olarak tanımlı olan kullanıcılar panele erişebilir. Bu doğrulama `AuthContext` ve `PrivateRoute` bileşenleri tarafından güvence altına alınmıştır.

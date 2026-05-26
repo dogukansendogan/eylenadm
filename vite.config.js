@@ -6,4 +6,10 @@ export default defineConfig({
   plugins: [react()],
   // history modunun SPA uygulamalarda doğru çalışması için base tanımı
   base: '/',
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
+    css: true,
+  },
 })

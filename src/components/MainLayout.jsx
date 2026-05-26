@@ -12,8 +12,8 @@ export default function MainLayout({ children, title }) {
     try {
       await logout();
       navigate("/login");
-    } catch (error) {
-
+    } catch (_error) {
+      console.error("Logout failed:", _error);
     }
   }
 
